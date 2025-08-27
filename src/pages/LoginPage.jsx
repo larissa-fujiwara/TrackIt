@@ -1,4 +1,4 @@
-import { Content, Input} from "../sharedStyles/stylesSetUp.js";
+import { Content, Form, Input, Button, NavLink} from "../sharedStyles/stylesSetUp.js";
 import { Emblem } from "../sharedStyles/imagesSetUp.js";
 import emblem from "../assets/emblem.svg";
 
@@ -6,7 +6,7 @@ export default function LoginPage() {
     return (
         <Content>
             <Emblem src={emblem} alt="TrackIt Emblem" />
-            <form>
+            <Form>
                 <Input
                     required 
                     type="email"
@@ -19,9 +19,9 @@ export default function LoginPage() {
                     placeholder="senha"  
                 />
                 
-                <button type="submit">Entrar</button>
-
-            </form>
+                <Button type="submit">Entrar</Button>
+            </Form>
+            <NavLink>Não tem conta? Cadastre-se!</NavLink>
         </Content>
     )
 }
