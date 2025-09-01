@@ -31,7 +31,7 @@ export default function SignUpPage(){
                     placeholder="foto"  
                 />
                 
-                <Button type="submit">Entrar</Button>
+                <Button type="submit">Cadastrar</Button>
             </Form>
             <NavLink>Já tem uma conta? Faça login!</NavLink>
         </Content>
