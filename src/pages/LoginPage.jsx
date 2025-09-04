@@ -1,4 +1,4 @@
-import { Content, Form, Input, Button, NavLink} from "../sharedStyles/stylesSetUp.js";
+import { Content, Form, Input, Button, ActionLink} from "../sharedStyles/stylesSetUp.js";
 import { Emblem } from "../sharedStyles/imagesSetUp.js";
 import emblem from "../assets/emblem.svg";
 
@@ -21,7 +21,7 @@ export default function LoginPage() {
                 
                 <Button type="submit">Entrar</Button>
             </Form>
-            <NavLink>Não tem conta? Cadastre-se!</NavLink>
+            <ActionLink>Não tem conta? Cadastre-se!</ActionLink>
         </Content>
     )
 }

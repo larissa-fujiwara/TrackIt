@@ -4,11 +4,8 @@ import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
 import Today from "./components/Today";
 import Habits from "./components/Habits";
-import { useNavigate } from "react-router";
 
 export default function App() {
-
-  /* const navigate = useNavigate(); */
 
   return (
     <BrowserRouter>

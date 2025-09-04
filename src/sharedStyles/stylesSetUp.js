@@ -43,6 +43,22 @@ export const Button = styled.button`
     background-color: #52B6FF;
     color: #FFFFFF;
 `
-export const NavLink = styled(Link)`
+export const ActionLink = styled(Link)`
     color:#52B6FF;
+`
+
+export const H1 = styled.h1`
+    font-size:1.25rem;
+    font-weight: 400;
+    color:#126BA5;
+` 
+export const HabitContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: #FFFFFF;
+    img{
+        width: 20%;
+        height:20%;
+    }
 `

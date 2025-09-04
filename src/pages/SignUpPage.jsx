@@ -1,4 +1,4 @@
-import { Content, Form, Input, Button, NavLink} from "../sharedStyles/stylesSetUp.js";
+import { Content, Form, Input, Button, ActionLink} from "../sharedStyles/stylesSetUp.js";
 import { Emblem } from "../sharedStyles/imagesSetUp.js";
 import emblem from "../assets/emblem.svg";
 
@@ -33,7 +33,7 @@ export default function SignUpPage(){
                 
                 <Button type="submit">Cadastrar</Button>
             </Form>
-            <NavLink>Já tem uma conta? Faça login!</NavLink>
+            <ActionLink>Já tem uma conta? Faça login!</ActionLink>
         </Content>
     )
 }
