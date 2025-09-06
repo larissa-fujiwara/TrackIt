@@ -56,6 +56,7 @@ export const HabitContainer = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 16px;
+    margin-top: 20px;
     background-color: #FFFFFF;
     img{
         width: 20%;
