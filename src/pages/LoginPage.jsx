@@ -3,11 +3,13 @@ import { Emblem } from "../sharedStyles/imagesSetUp.js";
 import emblem from "../assets/emblem.svg";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
-export default function LoginPage() {
+export default function LoginPage({setToken}) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     function logOn(e) {
         e.preventDefault();
@@ -16,7 +18,11 @@ export default function LoginPage() {
         const body = {email, password};
 
         axios.post(URL, body)
-            .then(res => console.log(res.data))
+            .then(res => {
+                setToken(res.data.token)
+                localStorage.setItem('token', res.data.token)
+                navigate('/today') 
+            })
             .catch(err => alert(err.response.data.message))
     }
 
