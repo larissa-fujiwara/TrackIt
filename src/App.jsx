@@ -5,21 +5,25 @@ import HomePage from "./pages/HomePage";
 import Today from "./pages/Today";
 import Habits from "./pages/Habits";
 import { useState } from "react";
+import UserContext from "./contexts/UserContext";
 
 export default function App() {
 
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [userImg, setUserImg] = useState(localStorage.getItem('userImage'));
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<LoginPage setToken={setToken} />} />
-        <Route path='/sign-up' element={<SignUpPage />} />
-        <Route element={<HomePage />}>
-          <Route path="today" element={<Today token={token} />} />
-          <Route path="habits" element={<Habits />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <UserContext.Provider value={{userImg, setUserImg, token, setToken}}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<LoginPage />} />
+          <Route path='/sign-up' element={<SignUpPage />} />
+          <Route element={<HomePage />}>
+            <Route path="today" element={<Today />} />
+            <Route path="habits" element={<Habits />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserContext.Provider>
   )
 }

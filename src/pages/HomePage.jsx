@@ -1,13 +1,26 @@
 import logo from "../assets/logo.svg";
 import styled from "styled-components";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, useNavigate } from "react-router";
+import { useContext, useEffect } from "react";
+import UserContext from "../contexts/UserContext";
 
 export default function HomePage() {
+
+    const { userImg } = useContext(UserContext);
+    const {token} = useContext(UserContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!token) {
+            navigate("/")
+        }
+    }, [])
+
     return (
         <>
             <Header>
                 <img src={logo} alt="logo" />
-                <img src="https://i.pinimg.com/736x/1e/aa/68/1eaa6875cf7569733c98484bf90485c1.jpg" alt="profile-pic" />
+                <img src={userImg} alt="profile-pic" />
             </Header>
             <Main>
                 <Outlet />

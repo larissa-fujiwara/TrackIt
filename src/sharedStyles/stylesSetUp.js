@@ -33,15 +33,26 @@ export const Input = styled.input`
     &:focus{
         border: 2px solid #666666;
     }
+    &:disabled{
+        color: #AFAFAF;
+        background-color: #D4D4D4;
+        opacity:0.5;
+    }
 `
 
 export const Button = styled.button`
     height: 2.75rem;
     font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 4px;
     border: none;
     background-color: #52B6FF;
     color: #FFFFFF;
+    &:disabled{
+        opacity: 0.7;
+    }
 `
 export const ActionLink = styled(Link)`
     color:#52B6FF;
@@ -51,7 +62,7 @@ export const H1 = styled.h1`
     font-size:1.25rem;
     font-weight: 400;
     color:#126BA5;
-` 
+`
 export const HabitContainer = styled.div`
     display: flex;
     justify-content: space-between;

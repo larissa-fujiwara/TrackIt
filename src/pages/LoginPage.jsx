@@ -1,14 +1,16 @@
 import { Content, Form, Input, Button, ActionLink } from "../sharedStyles/stylesSetUp.js";
 import { Emblem } from "../sharedStyles/imagesSetUp.js";
 import emblem from "../assets/emblem.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import UserContext from "../contexts/UserContext.js";
 
-export default function LoginPage({setToken}) {
+export default function LoginPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {setUserImg, setToken} = useContext(UserContext);
     const navigate = useNavigate();
 
     function logOn(e) {
@@ -19,7 +21,9 @@ export default function LoginPage({setToken}) {
 
         axios.post(URL, body)
             .then(res => {
+                setUserImg(res.data.image)
                 setToken(res.data.token)
+                localStorage.setItem('userImage', res.data.image)
                 localStorage.setItem('token', res.data.token)
                 navigate('/today') 
             })

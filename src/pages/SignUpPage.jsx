@@ -4,6 +4,7 @@ import emblem from "../assets/emblem.svg";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { ThreeDots } from "react-loader-spinner";
 
 
 export default function SignUpPage(){
@@ -12,17 +13,25 @@ export default function SignUpPage(){
     const [image, setImage] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     function createAccount(e){
         e.preventDefault();
+        setLoading(true);
         
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up';
         const body = {email, name, image, password};
         
         axios.post(URL, body)
-            .then(() => navigate('/'))
-            .catch(err => alert(err.response.data.message))
+            .then(() => {
+                setLoading(false)
+                navigate('/')
+            })
+            .catch(err => {
+                alert(err.response.data.message)
+                setLoading(false)
+            })
         
     }
     
@@ -35,7 +44,8 @@ export default function SignUpPage(){
                     type="email"
                     placeholder="seuemail@email.com"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}     
+                    onChange={e => setEmail(e.target.value)}
+                    disabled={loading}     
                 />
 
                 <Input
@@ -43,7 +53,8 @@ export default function SignUpPage(){
                     type="password"
                     placeholder="senha"
                     value={password}
-                    onChange={e => setPassword(e.target.value)}  
+                    onChange={e => setPassword(e.target.value)} 
+                    disabled={loading} 
                 />
 
                 <Input
@@ -52,6 +63,7 @@ export default function SignUpPage(){
                     placeholder="nome" 
                     value={name}
                     onChange={e => setName(e.target.value)} 
+                    disabled={loading}
                 />
 
                 <Input
@@ -60,9 +72,12 @@ export default function SignUpPage(){
                     placeholder="foto"
                     value={image}
                     onChange={e => setImage(e.target.value)}  
+                    disabled={loading}
                 />
                 
-                <Button type="submit">Cadastrar</Button>
+                <Button type="submit" disabled={loading}>
+                    {!loading ? 'Cadastrar' : <ThreeDots color="#FFFFFF" />}
+                </Button>
             </Form>
             <ActionLink to='/'>Já tem uma conta? Faça login!</ActionLink>
         </Content>

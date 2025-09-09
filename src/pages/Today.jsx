@@ -1,19 +1,13 @@
 import styled from 'styled-components';
 import { H1, HabitContainer } from '../sharedStyles/stylesSetUp.js';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router';
+import UserContext from '../contexts/UserContext.js';
 
-export default function Today({token}) {
+export default function Today() {
 
     const [todayList, setTodayList] = useState(null);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if(!token){
-            navigate("/")
-        }
-    }, [])
+    const {token} = useContext(UserContext);
 
     useEffect(() => {
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today';
