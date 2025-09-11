@@ -1,4 +1,4 @@
-import { Content, Form, Input, Button, ActionLink} from "../sharedStyles/stylesSetUp.js";
+import { Content, FormArea, Input, Button, ActionLink} from "../sharedStyles/stylesSetUp.js";
 import { Emblem } from "../sharedStyles/imagesSetUp.js";
 import emblem from "../assets/emblem.svg";
 import { useState } from "react";
@@ -38,7 +38,7 @@ export default function SignUpPage(){
     return (
         <Content>
             <Emblem src={emblem} alt="TrackIt Emblem" />
-            <Form onSubmit={createAccount}>
+            <FormArea onSubmit={createAccount}>
                 <Input
                     required 
                     type="email"
@@ -78,7 +78,7 @@ export default function SignUpPage(){
                 <Button type="submit" disabled={loading}>
                     {!loading ? 'Cadastrar' : <ThreeDots color="#FFFFFF" />}
                 </Button>
-            </Form>
+            </FormArea>
             <ActionLink to='/'>Já tem uma conta? Faça login!</ActionLink>
         </Content>
     )

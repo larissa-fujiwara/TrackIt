@@ -10,11 +10,11 @@ export const Content = styled.main`
     background-color: #FFFF;
 `
 
-export const Form = styled.form`
+export const FormArea = styled.form`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: ${({$habits}) => $habits ? '' : '20px' };
     row-gap: 8px;
     @media (min-width: 450px) {
         max-width:450px;
