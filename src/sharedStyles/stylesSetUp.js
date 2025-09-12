@@ -14,7 +14,7 @@ export const FormArea = styled.form`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: ${({$habits}) => $habits ? '' : '20px' };
+    padding: ${({$isHabit}) => $isHabit ? '' : '20px' };
     row-gap: 8px;
     @media (min-width: 450px) {
         max-width:450px;
@@ -24,7 +24,7 @@ export const FormArea = styled.form`
 export const Input = styled.input`
     width: 100%;
     height: 2.75rem;
-    font-size: 1.25rem;
+    font-size:${({$isHabit}) => $isHabit ? '1rem' : '1.25rem' };
     padding: 8px;
     border: 2px solid #D4D4D4;
     border-radius: 4px;
@@ -38,18 +38,20 @@ export const Input = styled.input`
         background-color: #D4D4D4;
         opacity:0.5;
     }
+    ${({$isHabit}) => $isHabit && `&::placeholder{color: #DBDBDB;}`}
 `
 
 export const Button = styled.button`
-    height: 2.75rem;
-    font-size: 1.25rem;
+    ${({$isHabit}) => $isHabit && 'width: 5.25rem;'}
+    height:${({$isHabit}) => $isHabit ? '2.25rem' : '2.75rem' };
+    font-size:${({$isHabit}) => $isHabit ? '1rem' : '1.25rem' };
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px;
     border: none;
-    background-color: #52B6FF;
-    color: #FFFFFF;
+    background-color:${({$cancel}) => $cancel ? '#FFFFFF' : '#52B6FF' };
+    color:${({$cancel}) => $cancel ? '#52B6FF' : '#FFFFFF' };
     &:disabled{
         opacity: 0.7;
     }
