@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from "react"
-import { MagnifyingGlass } from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 import styled from "styled-components";
 import Habit from "./Habit";
 import UserContext from '../contexts/UserContext.js';
 import axios from "axios";
 
-export default function HabitList() {
+export default function HabitList({updateList, setUpdateList}) {
 
     const [habitList, setHabitList] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -26,16 +26,17 @@ export default function HabitList() {
             .then(res => {
                 setHabitList(res.data)
                 setLoading(false)
+                setUpdateList(false);
             })
             .catch(err => console.log(err.response.data))
-    }, [habitList])
+    }, [updateList])
 
 
     return (
         <>
             {loading &&
                 <ListContainer $loading={loading}>
-                    <MagnifyingGlass color="#52B6FF" />
+                    <Oval color="#52B6FF" secondaryColor="#666666" />
                 </ListContainer>
             }
 

@@ -16,6 +16,7 @@ export default function Habits() {
     const [days, setDays] = useState([]);
     const [loading, setLoading] = useState(false);
     const { token } = useContext(UserContext);
+    const [updateList, setUpdateList] = useState(false);
     const weekdays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']; //array que determinará os dias em números
     const isHabit = true; //se está na página de hábito, muda o estilo do CSS
 
@@ -47,6 +48,7 @@ export default function Habits() {
                     setName('');
                     setDays([]);
                     setShowForm(false);
+                    setUpdateList(true);
                 })
         }
 
@@ -100,7 +102,7 @@ export default function Habits() {
                 </HabitContainer>)}
 
 
-            <HabitList />
+            <HabitList updateList={updateList} setUpdateList={setUpdateList}/>
 
 
 
