@@ -14,7 +14,7 @@ export const FormArea = styled.form`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: ${({$isHabit}) => $isHabit ? '' : '20px' };
+    padding: 20px;
     row-gap: 8px;
     @media (min-width: 450px) {
         max-width:450px;

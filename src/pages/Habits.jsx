@@ -1,8 +1,12 @@
 import styled from 'styled-components';
-import { Button, FormArea, H1, HabitContainer, Input } from '../sharedStyles/stylesSetUp.js';
+import { Button, H1, HabitContainer, Input } from '../sharedStyles/stylesSetUp.js';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Weekday from '../components/Weekday.jsx';
+import axios from 'axios';
+import UserContext from "../contexts/UserContext";
+import { ThreeDots } from 'react-loader-spinner';
+import HabitList from '../components/HabitsList.jsx';
 
 
 export default function Habits() {
@@ -11,21 +15,40 @@ export default function Habits() {
     const [name, setName] = useState('');
     const [days, setDays] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { token } = useContext(UserContext);
     const weekdays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']; //array que determinará os dias em números
     const isHabit = true; //se está na página de hábito, muda o estilo do CSS
 
-    console.log('componente Habits', days);
+    function formVisible() {
+        if (!showForm) {
+            setShowForm(true);
+        }
+    }
 
     function addHabit(e) {
         e.preventDefault();
-        setLoading(true);
 
-        const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`;
-        const body = { name, days };
+        if (days.length === 0) {
+            alert('Selecione um ou mais dias para acompanhar!');
+        } else {
+            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`;
+            const body = { name, days };
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            };
 
+            setLoading(true);
 
-
-        setShowForm(false);
+            axios.post(URL, body, config)
+                .then(res => {
+                    setLoading(false);
+                    setName('');
+                    setDays([]);
+                    setShowForm(false);
+                })
+        }
 
     }
 
@@ -33,41 +56,54 @@ export default function Habits() {
         <div>
             <Title>
                 <H1>Meus Hábitos</H1>
-                <AddBoxIcon onClick={() => setShowForm(true)} sx={{ fontSize: 40 }} style={{ color: '#52B6FF' }} />
+                <AddBoxIcon onClick={formVisible} sx={{ fontSize: 40 }} style={{ color: '#52B6FF' }} />
             </Title>
 
             {showForm && (
                 <HabitContainer $isHabit={isHabit}>
-                    <FormArea onSubmit={addHabit} $isHabit={isHabit}>
+                    <HabitForm onSubmit={addHabit}>
                         <Input
                             required
                             type="text"
                             placeholder='nome do hábito'
                             value={name}
                             onChange={e => setName(e.target.value)}
+                            disabled={loading}
 
                             $isHabit={true}
                         />
                         <Weekdays>
                             {weekdays.map((day, i) => <Weekday
-                                key={i} 
-                                day={day} 
+                                key={i}
+                                day={day}
                                 dayNum={i}
                                 days={days}
-                                setDays={setDays} 
-                                />)}
+                                setDays={setDays}
+                                loading={loading}
+                            />)}
                         </Weekdays>
                         <Wrapper>
-                            <Button type='button' $cancel={true} $isHabit={isHabit} onClick={() => setShowForm(false)}>Cancel</Button>
-                            <Button type='submit' $isHabit={isHabit}>Ok</Button>
+                            <Button type='button'
+                                disabled={loading}
+                                onClick={() => setShowForm(false)}
+                                $cancel={true}
+                                $isHabit={isHabit}
+                            >
+                                Cancel
+                            </Button>
+                            <Button type='submit' disabled={loading} $isHabit={isHabit}>
+                                {!loading ? 'Ok' : <ThreeDots height='1rem' color="#FFFFFF" />}
+                            </Button>
                         </Wrapper>
-                    </FormArea>
+                    </HabitForm>
 
                 </HabitContainer>)}
 
-            {/* {isEmpty && (<p style={{ color: '#666666' }}>
-                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-            </p>)} */}
+
+            <HabitList />
+
+
+
 
         </div>
     )
@@ -83,8 +119,18 @@ const Weekdays = styled.div`
     display: flex;
     column-gap: 4px;
 `
+
+const HabitForm = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    row-gap: 8px;
+`
+
 const Wrapper = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: end;
     column-gap: 4px;
 `

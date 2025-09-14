@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components"
 
-export default function Weekday ({day, dayNum, days, setDays}) {
+export default function Weekday ({day, dayNum, days, setDays, loading}) {
 
     const [isSelected, setIsSelected] = useState(false);
 
@@ -20,7 +20,7 @@ export default function Weekday ({day, dayNum, days, setDays}) {
 
 
     return (
-        <DayOption $isSelected={isSelected} type="button" onClick={updateDays}>{day}</DayOption>
+        <DayOption type="button" disabled={loading} onClick={updateDays} $isSelected={isSelected}>{day}</DayOption>
     )
 }
 
