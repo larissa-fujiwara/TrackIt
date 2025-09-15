@@ -104,9 +104,6 @@ export default function Habits() {
 
             <HabitList updateList={updateList} setUpdateList={setUpdateList}/>
 
-
-
-
         </div>
     )
 }
