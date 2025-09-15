@@ -1,6 +1,10 @@
 # TrackIt
 Aplicação web para acompanhamento de hábitos
 
+### Observações
+
+Aplicação desenvolvida para layouts mobile
+
 ## Link da aplicação:
 
 [Projeto TrackIt](https://track-it-zeta-ruby.vercel.app/)
