@@ -38,8 +38,6 @@ export default function TodayList({ idHabit, name, done, currentSequence, highes
             }
         }
 
-        console.log(URL);
-
         axios.post(URL, body, config)
             .then(res => console.log(res.data))
             .catch(err => console.log(err.response.data))
