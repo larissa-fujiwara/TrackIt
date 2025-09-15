@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import DisplayDays from "./DisplayDays"
 
 export default function Habit({ name, arrayDays }) {
 
@@ -9,16 +8,16 @@ export default function Habit({ name, arrayDays }) {
 
         <HabitCard>
             <p>{name}</p>
-            <Teste>
+            <WeekdayContainer>
                 {weekdays.map((day, i) =>
-                    <TesteButton key={i} $isSelected={arrayDays.includes(i) ? true : false}>{day}</TesteButton>
+                    <Day key={i} $isSelected={arrayDays.includes(i) ? true : false}>{day}</Day>
                 )}
-            </Teste>
+            </WeekdayContainer>
         </HabitCard>
     )
 }
 
-const TesteButton = styled.span`
+const Day = styled.span`
     width: 1.88rem;
     height: 1.88rem;
     font-size: 1.13rem;
@@ -31,7 +30,7 @@ const TesteButton = styled.span`
     ${({$isSelected}) => $isSelected ? 'color: #FFFFFF;' : 'color:#DBDBDB;'}
 `
 
-const Teste = styled.div`
+const WeekdayContainer = styled.div`
     width: 100%;
     display: flex;
     column-gap: 8px;

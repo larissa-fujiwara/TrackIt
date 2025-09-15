@@ -7,9 +7,23 @@ import UserContext from '../contexts/UserContext.js';
 export default function Today() {
 
     const [todayList, setTodayList] = useState(null);
+    const[loading, setLoading] = useState(false);
     const {token} = useContext(UserContext);
 
-    useEffect(() => {
+         function request() {
+            setLoading(true);
+            setTimeout(() => {
+                setLoading(false);
+                setTodayList([]);
+                /* setTodayList([{ id: 3, name: "Acordar", done: true, currentSequence: 1, highestSequence: 1}]); */
+            }, 1000)
+        }
+    
+        useEffect(() => {
+            request()
+        }, [])
+
+    /* useEffect(() => {
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today';
 
         const config = {
@@ -21,7 +35,7 @@ export default function Today() {
         axios.get(URL, config)
             .then(res => setTodayList(res.data))
             .catch(err => console.log(err.response.data))
-    },[])
+    },[]) */
 
     if (todayList === null){
         return (
