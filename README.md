@@ -13,10 +13,18 @@ Aplicação web para acompanhamento de hábitos
 - React-Router;
 - Day.js;
 
-## Funcionalidades implantadas atualmente:
+## Funcionalidades implantadas atualmente
+- Cadastro de novo usuário;
+- Login;
 - Adição de novo hábito;
 - Exibição da lista de hábitos;
 - Exibição de hábitos para o dia atual;
 - Marcar e desmarcar hábito realizado;
 - Sequência de dias em que o hábito foi realizado;
 - Recorde de dias que o hábito foi realizado;
+
+## Principais conhecimentos abordados
+- Autenticação;
+- LocalStorage e Persistência de login;
+- ContextAPI;
+- UX básico;
