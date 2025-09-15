@@ -1,13 +1,22 @@
 # TrackIt
-## Aplicação web para acompanhamento de hábitos
+Aplicação web para acompanhamento de hábitos
 
-### Bibliotecas utilizadas
+## Link da aplicação:
 
-Currently, two official plugins are available:
+[Projeto TrackIt](https://track-it-zeta-ruby.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Bibliotecas utilizadas
+- React;
+- MUI;
+- Styled-Components;
+- React-Router;
+- Day.js;
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Funcionalidades implantadas atualmente:
+- Adição de novo hábito;
+- Exibição da lista de hábitos;
+- Exibição de hábitos para o dia atual;
+- Marcar e desmarcar hábito realizado;
+- Sequência de dias em que o hábito foi realizado;
+- Recorde de dias que o hábito foi realizado;
